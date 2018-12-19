@@ -97,12 +97,14 @@ public class DynamoDBSessionStore extends StoreBase {
     public void save(Session session) throws IOException {
         sessionStorage.saveSession(session);
         sessionIds.add(session.getId());
+        logger.info("Saved session with id " + session.getId());
     }
-
+    
     @Override
     public void remove(String id) throws IOException {
         sessionStorage.deleteSession(id);
         sessionIds.remove(id);
+        logger.info("Removed session with id " + id);
     }
 
     private Session tryLoadSession(String id) {

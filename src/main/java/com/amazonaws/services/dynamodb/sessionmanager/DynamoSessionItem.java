@@ -25,9 +25,13 @@ public class DynamoSessionItem {
 
     public static final String SESSION_ID_ATTRIBUTE_NAME = "sessionId";
     public static final String SESSION_DATA_ATTRIBUTE_NAME = "sessionData";
+    public static final String SESSION_LAST_USAGE_TIME = "sessionTime";
+    public static final String SESSION_CREATION_TIME = "creationTime";
 
     private String sessionId;
     private ByteBuffer sessionData;
+    private long creationTime;
+    private long sessionTime;
 
     public DynamoSessionItem() {
     }
@@ -53,5 +57,26 @@ public class DynamoSessionItem {
     public void setSessionData(ByteBuffer sessionData) {
         this.sessionData = sessionData;
     }
+
+
+    @DynamoDBAttribute(attributeName = SESSION_LAST_USAGE_TIME)
+    public long getSessionTime() {
+        return sessionTime;
+    }
+
+    public void setSessionTime(long sessionTime) {
+        this.sessionTime = sessionTime;
+    }
+
+    @DynamoDBAttribute(attributeName = SESSION_CREATION_TIME)
+    public long getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(long creationTime) {
+        this.creationTime = creationTime;
+    }
+
+
 
 }

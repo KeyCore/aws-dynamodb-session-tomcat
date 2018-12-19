@@ -39,7 +39,15 @@ public class DynamoUtils {
 
         request.withAttributeDefinitions(
                 new AttributeDefinition().withAttributeName(DynamoSessionItem.SESSION_ID_ATTRIBUTE_NAME)
-                        .withAttributeType(ScalarAttributeType.S));
+                        .withAttributeType(ScalarAttributeType.S)
+                ,
+                new AttributeDefinition().withAttributeName(DynamoSessionItem.SESSION_CREATION_TIME)
+                        .withAttributeType(ScalarAttributeType.N)
+                        ,
+                new AttributeDefinition().withAttributeName(DynamoSessionItem.SESSION_LAST_USAGE_TIME)
+                        .withAttributeType(ScalarAttributeType.N)
+
+        );
 
         request.setProvisionedThroughput(new ProvisionedThroughput().withReadCapacityUnits(readCapacityUnits)
                 .withWriteCapacityUnits(writeCapacityUnits));

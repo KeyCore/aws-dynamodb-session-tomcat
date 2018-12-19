@@ -36,6 +36,8 @@ public class DefaultDynamoSessionItemConverter implements DynamoSessionItemConve
             oos.close();
             DynamoSessionItem sessionItem = new DynamoSessionItem(session.getIdInternal());
             sessionItem.setSessionData(ByteBuffer.wrap(fos.toByteArray()));
+            sessionItem.setCreationTime(session.getCreationTime());
+            sessionItem.setSessionTime(session.getLastAccessedTime());
             return sessionItem;
         } catch (Exception e) {
             IOUtils.closeQuietly(oos, null);
